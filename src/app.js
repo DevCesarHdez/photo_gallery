@@ -6,6 +6,7 @@ const exphbs = require('express-handlebars');
 
 //intitializations
 const app = express();
+require('./databse');
 
 //settings
 app.set('port', process.env.PORT || 3000);
