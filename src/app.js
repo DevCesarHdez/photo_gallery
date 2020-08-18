@@ -3,19 +3,22 @@ const morgan = require('morgan');
 const multer = require('multer');
 const path = require('path');
 const exphbs = require('express-handlebars');
+const Handlebars = require('handlebars')
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 
 //intitializations
 const app = express();
 require('./databse');
 
 //settings
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 4000);
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.hbs', exphbs({
     defaultLayout: 'main',
     layoutsDir: path.join(app.get('views') , 'layouts'),
     partialsDir: path.join(app.get('views'), 'partials'),
-    extname: '.hbs'
+    extname: '.hbs',
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
 }));
 app.set('view engine','.hbs');
 
